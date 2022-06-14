@@ -47,6 +47,8 @@ namespace GeometryMaker
 
             ExtrudePathMesh mesh = new ExtrudePathMesh(polygon, path);
             mesh.FlipFace();
+            mesh.ReCalculateNormal();
+        
             return mesh;
         }
     }

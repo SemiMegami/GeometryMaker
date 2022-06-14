@@ -63,9 +63,9 @@ namespace GeometryMaker
                 float turnTheta = TurnAngle * i / (n - 1) * MathF.PI / 180;
                 points.Add(new AxisPoint3D()
                 {
-                    Position = new Vector3(TurnRadius * MathF.Cos(turnTheta) - TurnRadius, Dy * i / (n - 1), TurnRadius * MathF.Sin(turnTheta)),
-                    Front = new Vector3(-MathF.Sin(turnTheta), 0, MathF.Cos(turnTheta)),
-                    Right = new Vector3(MathF.Cos(turnTheta), MathF.Sin(theta), MathF.Sin(turnTheta)),
+                    Position = new Vector3(TurnRadius * MathF.Cos(turnTheta) - TurnRadius, Dy * i / (n - 1),MathF.Abs(TurnRadius) * MathF.Sin(turnTheta)),
+                    Front = new Vector3(-MathF.Sin(turnTheta) * MathF.Sign(TurnRadius), 0, MathF.Cos(turnTheta)),
+                    Right = new Vector3(MathF.Cos(turnTheta)  , MathF.Sin(theta),  MathF.Sin(turnTheta) * MathF.Sign(TurnRadius)),
                     Up = new Vector3(0,1, 0)
                 });
             }
@@ -73,6 +73,8 @@ namespace GeometryMaker
             Path3D path = new Path3D(points);
 
             ExtrudePathMesh mesh = new ExtrudePathMesh(polygon, path);
+      
+            mesh.ReCalculateNormal();
             mesh.FlipFace();
             return mesh;
         }

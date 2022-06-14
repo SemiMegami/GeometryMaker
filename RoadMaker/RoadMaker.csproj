@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="ThreeDMaker\ThreeDMaker.csproj" />
+    <ProjectReference Include="..\ThreeDMaker\ThreeDMaker.csproj" />
   </ItemGroup>
 
 </Project>
